@@ -42,7 +42,8 @@ def history(repo):
     yield c
 
 def table(repo, project, snapshot):
-  root = Path("extract/data") / project / "derived"
+  root = (Path(__file__).resolve().parents[2] / "extract/data" / project
+          / "derived")                        # Tim's extract/, beside dev/
   pat = defaultdict(set)
   for r in csv.DictReader(open(root / "pattern4/patterned_files.csv")):
     pat[r["file_pathname"]].add(r["pattern_type"])

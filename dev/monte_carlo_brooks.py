@@ -16,7 +16,8 @@ from pathlib import Path
 import numpy as np
 
 # Insert paper/ directory to import stats.py (timm/ezr)
-sys.path.insert(0, str(Path(__file__).parent / "paper"))
+_dev = Path(__file__).resolve().parent                 # dev/
+sys.path[:0] = [str(_dev / "paper_patches"), str(_dev.parent / "paper")]
 import stats
 
 SCENARIOS = {

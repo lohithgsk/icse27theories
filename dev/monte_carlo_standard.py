@@ -18,7 +18,8 @@ finish(none), 0.5); REFUTE if delay < -that; else neutral."""
 import sys, math, json, time, random, argparse
 from pathlib import Path
 import numpy as np
-sys.path.insert(0, str(Path(__file__).parent / "paper"))
+_dev = Path(__file__).resolve().parent                 # dev/
+sys.path[:0] = [str(_dev / "paper_patches"), str(_dev.parent / "paper")]
 import stats
 from lawkit.laws import LAWS, team_comm, person_comm, async_comm
 from lawkit.core import background, gap, spec
@@ -115,7 +116,7 @@ def summarise(name, story, f0, f1, rng):
   thr = np.maximum(0.05 * np.abs(f0), 0.5)
   later, earlier = delay > thr, delay < -thr
   cd, ks = cliffs_ks(f1, f0)
-  k = rng.choice(len(f0), 2000, replace=False)
+  k = rng.choice(len(f0), min(2000, len(f0)), replace=False)
   eps = float(np.std(f0[k])) * stats.the.stats.eps
   same = stats.same(f1[k].tolist(), f0[k].tolist(), eps)
   q = lambda a, x: float(np.percentile(a, x))

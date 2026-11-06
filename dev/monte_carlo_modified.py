@@ -20,7 +20,8 @@ import sys, os, time, json, argparse
 from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).parent / "paper"))
+_dev = Path(__file__).resolve().parent                 # dev/
+sys.path[:0] = [str(_dev / "paper_patches"), str(_dev.parent / "paper")]
 import stats
 
 from brooks_modifications import MODIFIED_MODELS, simulate_modified_vectorized

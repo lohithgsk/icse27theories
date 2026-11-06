@@ -102,7 +102,7 @@ async-remote:
 # lawkit: generic law pipeline (battery -> regimes -> evidence -> cards)
 # REPOS = directory holding clones of helix/ and aider/
 # -----------------------------------------------------------------------------
-REPOS ?= ../repos
+REPOS ?= ../../repos
 
 laws:  ## evidence cards for every law in lawkit/laws.py
 	$(PYTHON) -B run_laws.py
